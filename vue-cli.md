@@ -18,3 +18,14 @@ vue2安装vue-router
 ```npm i element-ui -S```
 安装sass加载器
 ```npm install sass-loader sass  --save-dev ```
+
+```yaml main.js
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+});
+```
