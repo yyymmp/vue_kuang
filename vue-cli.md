@@ -13,3 +13,8 @@
 
 vue2安装vue-router
 ```npm install --legacy-peer-deps vue-router@3.5.2```
+
+安装element-ui
+```npm i element-ui -S```
+安装sass加载器
+```npm install sass-loader sass  --save-dev ```

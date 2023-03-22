@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from "vue-router";
 import Content from "../components/Content";
-import Main from "../components/Main";
+import Main from "../views/Main";
+import Login from "../views/Login";
 
 //安装路由
 Vue.use(VueRouter)
@@ -22,7 +23,14 @@ export default new VueRouter({
       name: 'main',
       //跳转的组件
       component:Main
-    }
+    },
+    {
+      //路由路径
+      path:'/login',
+      name: 'login',
+      //跳转的组件
+      component:Login
+    },
 
   ]
 

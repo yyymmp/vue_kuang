@@ -2,6 +2,7 @@
   <div id="app">
     <router-link to="/main">首页</router-link>
     <router-link to="/content">内容</router-link>
+    <router-link to="/login">login</router-link>
 <!--   router-view>:展示模板内容 -->
     <router-view></router-view>
   </div>
