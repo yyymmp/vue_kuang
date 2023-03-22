@@ -1,0 +1,31 @@
+<template>
+  <myslot>
+    <div>大家好我是父组件</div>
+    <template v-slot:header>
+      <h1>Here might be a page title</h1>
+    </template>
+
+<!--    <p>A paragraph for the main content.</p>-->
+<!--    <p>And another one.</p>-->
+
+<!--    <template v-slot:footer>-->
+<!--      <p>Here's footer info</p>-->
+<!--    </template>-->
+  </myslot>
+</template>
+<script src="../lib/vue.js"></script>
+<script>
+<!--引入组件-->
+import myslot from './t1-slot';
+export default {
+  //注册组件
+  components: {
+    myslot
+  },
+  name: "test"
+}
+</script>
+
+<style scoped>
+
+</style>

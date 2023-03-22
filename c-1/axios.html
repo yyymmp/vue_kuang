@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--    <h1>{{info.name}}</h1>-->
+    <h1>{{currentTime1}}</h1>
+</div>
+</body>
+<!--引入axios-->
+<script src="../lib/axios.min.js"></script>
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                info: null
+            }
+        },
+        //钩子函数 mounted：一般用来加载网络请求
+        mounted() {
+            // axios.get("../data.json").then(rep => {
+            //     console.log(rep)
+            //     this.info = rep
+            // })
+        },
+        //计算属性
+        computed:{
+            currentTime1(){
+                return Date.now()
+            }
+        },
+        methods:{
+            currentTime(){
+                return Date.now()
+            }
+        }
+
+    });
+
+
+</script>
+</html>
