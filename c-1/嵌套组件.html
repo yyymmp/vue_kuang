@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!-- 3 使用组件-->
+    <app></app>
+</div>
+
+
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+    Vue.config.productionTip = false
+    //1 创建组件
+    const   student = Vue.extend({
+        //组件一定要使用函数写法
+        data() {
+            return {
+                studentName: "jlz",
+                age: 18
+            }
+        },
+        template:`<div><h1>{{studentName}}</h1>
+        <h1>{{age}}</h1></div>`
+
+    })
+    const school = Vue.extend({
+        //组件一定要使用函数写法
+        data() {
+            return {
+                schoolName: "北京大学",
+                address: "中国"
+            }
+        },
+        template:`<div><h1>{{schoolName}}</h1>
+        <h1>{{address}}</h1>
+        <p>使用嵌套组件</p>
+        <student></student>
+        </div>`,
+        components:{
+            //组件中注册组件
+            student
+        }
+    })
+    const   hello = Vue.extend({
+        template:`<div><h1>hello</h1>
+        `
+    })
+    const  app = Vue.extend({
+        template:`
+       <div>
+       <hello></hello>
+       <school></school>
+       </div>
+        `,
+        components:{
+            school,
+            hello
+        }
+    })
+
+    //根部vm
+    const vm = new Vue({
+        el: "#app",
+        //2 只注册一个组件到vm 使用 <app></app>即可
+        components:{
+            app
+        }
+    })
+</script>
+</html>
