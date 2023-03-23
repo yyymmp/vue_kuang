@@ -6,8 +6,11 @@
 </head>
 <body>
 <div id="app">
-<!--    <h1>{{info.name}}</h1>-->
+    <!--    <h1>{{info.name}}</h1>-->
     <h1>{{currentTime1}}</h1>
+    <h1 @click="add">post请求</h1>
+    <h1 @click="getContent">get请求 获取文章</h1>
+    <p>{{message}}</p>
 </div>
 </body>
 <!--引入axios-->
@@ -16,28 +19,63 @@
 <script>
     const vm = new Vue({
         el: "#app",
-        data() {
-            return {
-                info: null
-            }
+        data:{
+
+                info: null,
+                message:null,
+
         },
         //钩子函数 mounted：一般用来加载网络请求
         mounted() {
+            axios.get("http://jsonplaceholder.typicode.com/posts/2").then(
+                function (resp) {
+                    console.log(resp)
+                }
+
+            ).catch(err => console.log(err))
             // axios.get("../data.json").then(rep => {
             //     console.log(rep)
             //     this.info = rep
             // })
         },
         //计算属性
-        computed:{
-            currentTime1(){
+        computed: {
+            currentTime1() {
                 return Date.now()
             }
         },
-        methods:{
-            currentTime(){
+        methods: {
+            currentTime() {
                 return Date.now()
+            },
+            add() {
+                axios.post("http://jsonplaceholder.typicode.com/posts", {
+                    "userId": 1,
+                    'title': "jlz",
+                    'body': "雷浩"
+                }).then(function (resp) {
+                        console.log(resp)
+                    },
+                    function (error) {
+                        console.log(error)
+                    }
+                )
+                //
+            },
+            getContent() {
+                //
+                const that = this;
+                axios.get("http://jsonplaceholder.typicode.com/posts/2").then(function (resp) {
+                        console.log(resp)
+                        //axios内部此时的this不在指向上方vm对象了 故上方将this暂存
+                        that.message = resp.data.body
+                    },
+                    function (error) {
+                        console.log(error)
+                    }
+                )
             }
+
         }
 
     });
