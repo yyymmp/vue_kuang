@@ -6,6 +6,5 @@ new Vue({
     components:{
         App
     }
-
 })
 
