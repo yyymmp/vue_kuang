@@ -4,7 +4,7 @@
             <input type="checkbox" :checked="todo.done" @change="handleCheck(todo.id)"/>
             <span>{{todo.title}}</span>
         </label>
-        <button class="btn btn-danger" style="display:none">删除</button>
+            <button class="btn btn-danger" @click="delTodo(todo.id)">删除</button>
     </li>
 </template>
 <style scoped>
@@ -42,11 +42,17 @@
     li:last-child {
         border-bottom: none;
     }
+    li:hover{
+        background-color: #ddd;
+    }
+    li:hover button{
+        display: block;
+    }
 </style>
 <script>
     export default {
         //声明接收todo对象
-        props:['todo','checkTodo'],
+        props:['todo','checkTodo','deleteTodo'],
         name: 'Item',
         //组件一定要使用函数写法
         data() {
@@ -57,6 +63,14 @@
                 console.log(id)
                 this.checkTodo(id);
                 //通知App组件将数据状态更改
+            },
+            delTodo(id){
+                //confirm交互
+                if (confirm("确认删除吗")){
+                    console.log(id)
+                    //通知App.vue删除
+                    this.deleteTodo(id)
+                }
             }
         }
     }
