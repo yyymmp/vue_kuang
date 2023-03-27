@@ -3,7 +3,7 @@
         <div class="todo-container">
             <div class="todo-wrap">
                 <MyHeader :addTodo="addTodo"></MyHeader>
-                <MyList :todos="todos"></MyList>
+                <MyList :todos="todos" :checkTodo="checkTodo"></MyList>
                 <MyFooter></MyFooter>
             </div>
         </div>
@@ -32,9 +32,22 @@
             MyList
         },
         methods:{
+            /*
+            数据在哪，对数据的操作就放在哪
+             */
+
             addTodo(todo){
                 console.log(todo);
                 this.todos.unshift(todo)
+            },
+
+            //勾选 取消勾选 但该操作在孙组件中，此时就需要逐层传递数据 先传给list 再传给item
+            checkTodo(id){
+                this.todos.forEach((todo) =>{
+                    if (todo.id === id){
+                        todo.done = !todo.done
+                    }
+                })
             }
         }
     }

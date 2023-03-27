@@ -1,7 +1,7 @@
 <template>
     <li>
         <label>
-            <input type="checkbox" :checked="todo.done"/>
+            <input type="checkbox" :checked="todo.done" @change="handleCheck(todo.id)"/>
             <span>{{todo.title}}</span>
         </label>
         <button class="btn btn-danger" style="display:none">删除</button>
@@ -46,12 +46,18 @@
 <script>
     export default {
         //声明接收todo对象
-        props:['todo'],
+        props:['todo','checkTodo'],
         name: 'Item',
         //组件一定要使用函数写法
         data() {
             return {}
         },
-        methods: {}
+        methods: {
+            handleCheck(id){
+                console.log(id)
+                this.checkTodo(id);
+                //通知App组件将数据状态更改
+            }
+        }
     }
 </script>

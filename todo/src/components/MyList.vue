@@ -1,6 +1,6 @@
 <template>
     <ul class="todo-main">
-        <MyItem v-for="todo in todos" :todo="todo" :key="todo.id ">
+        <MyItem v-for="todo in todos" :todo="todo" :key="todo.id ":checkTodo="checkTodo">
             todo.title
         </MyItem>
 
@@ -29,7 +29,7 @@
 
     export default {
         name: 'List',
-        props:['todos'],
+        props:['todos','checkTodo'],
         //组件一定要使用函数写法
         data() {
             return {
