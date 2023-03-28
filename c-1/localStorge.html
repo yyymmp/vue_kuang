@@ -5,6 +5,24 @@
     <title>Title</title>
 </head>
 <body>
+<h1>localStorge</h1>
+<button onclick="saveData()">新增</button>
 
 </body>
+<script>
+    function saveData(){
+        //只能存储字符串
+        localStorage.setItem("msg","hello")
+        let  p ={
+            "name":"jlz",
+            "age":30
+        }
+        localStorage.setItem("person",JSON.stringify(p))
+
+        //读取
+        console.log()
+        //解析为对象
+        JSON.parse(localStorage)
+    }
+</script>
 </html>
