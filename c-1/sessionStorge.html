@@ -5,6 +5,29 @@
     <title>Title</title>
 </head>
 <body>
+<h1>sessionStorge</h1>
+<button onclick="saveData()">新增</button>
 
 </body>
+<script>
+    //session: 一次会话就失效了,关闭窗口即失效
+    function saveData(){
+        //只能存储字符串
+        sessionStorage.setItem("msg","hello")
+        let  p ={
+            "name":"jlz",
+            "age":30
+        }
+        sessionStorage.setItem("person",JSON.stringify(p))
+
+        //读取
+        console.log(sessionStorage.getItem("person"))
+        //解析为对象
+        console.log(JSON.parse(sessionStorage.getItem("person")))
+        //删除一个
+        // sessionStorage.removeItem("person")
+        //清空全部
+        // sessionStorage.clear()
+    }
+</script>
 </html>

@@ -19,11 +19,7 @@ export default {
     name: 'App',
     data() {
         return {
-            todos: [
-                {id: '001', title: "吃饭", done: false},
-                {id: '002', title: "睡觉", done: true},
-                {id: '003', title: "开车", done: true},
-            ]
+            todos: JSON.parse(localStorage.getItem("todos")) || []
         }
     },
     components: {
@@ -74,6 +70,19 @@ export default {
             this.todos = filter;
         }
     }
+    ,watch:{
+        //监控todos变化捕获 此监视仅仅监视对象数组是否发生变化 对象内部发生变法无法检测
+        // todos(value){
+        //     localStorage.setItem("todos",JSON.stringify(value))
+        // }
+        todos:{
+            deep:true,
+            handler(val){
+                localStorage.setItem("todos",JSON.stringify(val))
+            }
+        }
+    }
+
 }
 </script>
 
