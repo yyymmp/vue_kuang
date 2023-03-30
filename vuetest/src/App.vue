@@ -3,8 +3,14 @@
         <img src="./assets/logo.png" alt="">
         <h1 v-text="msg" ref="title"></h1>
         <button @click="showDom">点击输出h1</button>
-        <School></School>
-        <Student></Student>
+        <!--通过父组件给子组件传递函数类型的props实现子给父传递数据        -->
+        <School :getSchoolName="getSchoolName"></School>
+
+        <!--给vc实例绑定了一个atguigu事件        第一种写法 @-->
+<!--        <Student v-on:atguigu="getStuName"></Student>-->
+
+        <!--给vc实例绑定了一个atguigu事件        第二种写法 ref-->
+                <Student ref="student"></Student>
     </div>
 </template>
 <style>
@@ -31,8 +37,19 @@ export default {
             // document.getElementById("title")
             //2使用vue方式获取 元素需要使用ref属性 id属性的代替者
             console.log(this.$refs.title)
-
+        },
+        getSchoolName(name){
+            console.log("App 收到学校名",name)
+        },
+        getStuName(name){
+            console.log("demo 事件被调用",name)
         }
+    },
+    mounted() {
+        //给this.$refs.student即vc实例绑定 on 当vc实例调用atguigu事件时,触发this.getStuName函数
+        this.$refs.student.$on("atguigu",this.getStuName)
+        //仅仅调用一次生效
+        this.$refs.student.$once("atguigu",this.getStuName)
     }
 }
 </script>
