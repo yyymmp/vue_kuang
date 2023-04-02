@@ -1,7 +1,8 @@
 <template>
     <div class="demo"><h1>{{stuName}}</h1>
         <h1>{{age}}</h1>
-    <button @click="sendStuName()">把学生名传递给App</button>
+        <button @click="sendStuName()">把学生名传递给App</button>
+        <button @click="unbind()">解绑自定义事件(atguigu)</button>
     </div>
 </template>
 <style>
@@ -22,16 +23,28 @@
             return {
                 stuName: "jlz",
                 age: 18,
-                commonAttr:"混合学生"
+                commonAttr: "混合学生"
             }
         },
         methods: {
             showName() {
                 alert(this.stuName)
             },
-            sendStuName(){
+            sendStuName() {
                 //触发vc上绑定的自定义事件
-                this.$emit('atguigu',this.stuName)
+                this.$emit('atguigu', this.stuName)
+
+                this.$emit('demo');
+            },
+
+            //触发解绑自定义事件
+            unbind(){
+                //单个解绑
+                this.$off("atguigu")
+                //多个解绑
+                this.$off(["atguigu",'demo'])
+                //解绑全部
+                this.$off();
             }
         },
 
