@@ -27,7 +27,7 @@
     //3   默认暴露 export default school
     export default {
         name: 'Header',
-        props:['addTodo'],
+        // props:['addTodo'],
         methods: {
             add(e){
                 if (!e.target.value){
@@ -41,7 +41,10 @@
                   done:false
                 };
             //   调用父组件传递过来的函数
-                this.addTodo(addTodo)
+            //     this.addTodo(addTodo)
+
+                //使用自定义事件
+                this.$emit("addTodo",addTodo)
                 e.target.value = ''
             }
         }

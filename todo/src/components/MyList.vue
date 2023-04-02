@@ -1,6 +1,6 @@
 <template>
     <ul class="todo-main">
-        <MyItem v-for="todo in todos" :todo="todo" :key="todo.id ":checkTodo="checkTodo" :deleteTodo='deleteTodo'>
+        <MyItem v-for="todo in todos" :todo="todo" :key="todo.id" :checkTodo="checkTodo" :deleteTodo='deleteTodo'>
             todo.title
         </MyItem>
 
