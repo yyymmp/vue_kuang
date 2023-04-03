@@ -7,10 +7,13 @@
 
         <button @click="send">全局事件总线 把学校名字传递给Stu</button>
 
+        <button @click="sub">订阅发布 把学校名字传递给Stu</button>
+
     </div>
 
 </template>
 <script>
+    import pubsub from 'pubsub-js'
     //es模块暴露方式
     //1   export const school = Vue.extend({
     //2   在最后变暴露变量 export {school}
@@ -37,6 +40,10 @@
                 this.$bus.$emit('sendToStu',this.SchoolName)
 
                 // this.d.$emit("hello",this.SchoolName)
+            },
+            sub(){
+                //发布hello事件
+                pubsub.publish("hello",666)
             }
 
         },

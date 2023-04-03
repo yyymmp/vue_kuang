@@ -12,7 +12,7 @@
     }
 </style>
 <script>
-
+    import pubsub from 'pubsub-js'
     //es模块暴露方式
     //1   export const school = Vue.extend({
     //2   在最后变暴露变量 export {school}
@@ -56,6 +56,18 @@
             this.$bus.$on("sendToStu",(data)=> {
                 console.log("stu收到信息",data)
             })
+
+            this.pubId =  pubsub.subscribe("hello", (msgName,data)=> {
+                //this
+                //在vue框架中,使用function this是未定义的  使用箭头函数
+                console.log(this)
+                console.log("Stu回调执行 有人发布了hello事件",msgName,data)
+            })
+
+        },
+        beforeDestroy() {
+            //取消订阅
+            pubsub.unsubscribe( this.pubId )
 
         }
     }
