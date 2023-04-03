@@ -12,13 +12,22 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 
+//全局组件事件总线
+// const Demo = Vue.extend({});
+// const d = new Demo()
+
+
+
 /*
 创建vVue实例对象-vm
  */
 new Vue({
   //将App组件放入容器中
   render: h => h(App),
-
+  beforeCreate() {
+    //全局事件
+    Vue.prototype.$bus = this
+  }
   //分析
   // render(createElement){
   //   //render函数的参数是一个函数

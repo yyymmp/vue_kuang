@@ -1,8 +1,9 @@
 <template>
     <div class="demo"><h1>{{stuName}}</h1>
         <h1>{{age}}</h1>
-        <button @click="sendStuName()">把学生名传递给App</button>
-        <button @click="unbind()">解绑自定义事件(atguigu)</button>
+<!--        <button @click="sendStuName()">把学生名传递给App</button>-->
+<!--        <button @click="unbind()">解绑自定义事件(atguigu)</button>-->
+        <button @click="sendTo()">全局事件总线 </button>
     </div>
 </template>
 <style>
@@ -44,9 +45,18 @@
                 //多个解绑
                 this.$off(["atguigu",'demo'])
                 //解绑全部
-                this.$off();
+                // this.$off();
+            },
+            sendTo(){
+                this.$bus.$emit('hello',this.stuName);
             }
         },
+        mounted() {
+            //绑定事件hello
+            this.$bus.$on("sendToStu",(data)=> {
+                console.log("stu收到信息",data)
+            })
 
+        }
     }
 </script>

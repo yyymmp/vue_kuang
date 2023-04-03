@@ -4,6 +4,9 @@
         <h1>{{address}}</h1>
 
         <button @click="sendSchoolName()">把学校名字传递给App</button>
+
+        <button @click="send">全局事件总线 把学校名字传递给Stu</button>
+
     </div>
 
 </template>
@@ -29,10 +32,19 @@
             },
             sendSchoolName(){
                 this.getSchoolName(this.SchoolName);
+            },
+            send(){
+                this.$bus.$emit('sendToStu',this.SchoolName)
+
+                // this.d.$emit("hello",this.SchoolName)
             }
 
         },
-
+        mounted() {
+            this.$bus.$on("hello",(data)=> {
+                console.log("sch收到信息",data)
+            })
+        }
     }
 </script>
 <style scoped lang="less">
