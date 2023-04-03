@@ -3,7 +3,7 @@
         <div class="todo-container">
             <div class="todo-wrap">
                 <MyHeader @addTodo="addTodo"></MyHeader>
-                <MyList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"></MyList>
+                <MyList :todos="todos"  :deleteTodo="deleteTodo"></MyList>
                 <MyFooter :todos="todos" :checkAllTodo="checkAllTodo" :clearAll="clearAll"></MyFooter>
             </div>
         </div>
@@ -81,7 +81,16 @@ export default {
                 localStorage.setItem("todos",JSON.stringify(val))
             }
         }
+    },
+    mounted() {
+        //绑定全局事件
+        console.log("app 绑定checkTodo事件")
+        this.$bus.$on("checkTodo",this.checkTodo)
+    },
+    beforeDestroy() {
+        this.$bus.$off("checkTodo")
     }
+
 
 }
 </script>

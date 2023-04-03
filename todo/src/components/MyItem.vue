@@ -52,7 +52,7 @@
 <script>
     export default {
         //声明接收todo对象
-        props:['todo','checkTodo','deleteTodo'],
+        props:['todo','deleteTodo'],
         name: 'Item',
         //组件一定要使用函数写法
         data() {
@@ -61,7 +61,9 @@
         methods: {
             handleCheck(id){
                 console.log(id)
-                this.checkTodo(id);
+                debugger
+                this.$bus.$emit('checkTodo',id)
+                // this.checkTodo(id);
                 //通知App组件将数据状态更改
             },
             delTodo(id){
