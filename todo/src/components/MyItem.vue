@@ -50,6 +50,7 @@
     }
 </style>
 <script>
+    import pubsub from "pubsub-js"
     export default {
         //声明接收todo对象
         props:['todo','deleteTodo'],
@@ -71,7 +72,9 @@
                 if (confirm("确认删除吗")){
                     console.log(id)
                     //通知App.vue删除
-                    this.deleteTodo(id)
+                    // this.deleteTodo(id)
+
+                    pubsub.publish("deleteTodo",id)
                 }
             }
         }

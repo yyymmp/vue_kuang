@@ -14,6 +14,7 @@
 import MyFooter from "@/components/MyFooter";
 import MyHeader from "@/components/MyHeader";
 import MyList from "@/components/MyList";
+import pubsub from "pubsub-js"
 
 export default {
     name: 'App',
@@ -47,7 +48,7 @@ export default {
         },
 
         //删除
-        deleteTodo(id) {
+        deleteTodo(_,id) {
             //filter不改变原数组 返回新数组
             let filter = this.todos.filter((todo) => {
                 return todo.id !== id
@@ -86,9 +87,14 @@ export default {
         //绑定全局事件
         console.log("app 绑定checkTodo事件")
         this.$bus.$on("checkTodo",this.checkTodo)
+
+        //使用pubsub订阅事件
+        this.pubid = pubsub.subscribe("deleteTodo",this.deleteTodo)
     },
     beforeDestroy() {
         this.$bus.$off("checkTodo")
+
+        pubsub.unsubscribe(this.pubid)
     }
 
 
