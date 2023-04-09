@@ -9,6 +9,11 @@ import Vue from 'vue'
  App 他是所有组件的父组件
  */
 import App from './App.vue'
+/**
+ * 引入store
+ */
+import store from "./store"
+
 
 Vue.config.productionTip = false
 
@@ -27,7 +32,9 @@ new Vue({
   beforeCreate() {
     //全局事件
     Vue.prototype.$bus = this
-  }
+  },
+  //引入Vuex时,可以引入store配置项
+  store:store
   //分析
   // render(createElement){
   //   //render函数的参数是一个函数

@@ -12,6 +12,9 @@
 
         <!--给vc实例绑定了一个atguigu事件        第二种写法 ref-->
 <!--                <Student ref="student"></Student>-->
+
+
+        <Count></Count>
     </div>
 </template>
 <style>
@@ -20,6 +23,7 @@
 //汇总所有的组件
 import School from "./components/School";
 import Student from "./components/Student";
+import Count from "@/components/Count";
 
 export default {
     name: 'App',
@@ -31,7 +35,8 @@ export default {
     },
     components: {
         School,
-        Student
+        Student,
+        Count
     },
     methods: {
         showDom(){
